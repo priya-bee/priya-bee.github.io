@@ -469,14 +469,17 @@ clear:both}
 			text-align:center;
 	}
 	.about_inner{
-		color: #001f3f;
+		background-color: #9E7FBC;
+		color: white ;
 		font-family: 'Open Sans Condensed', sans-serif;
 		font-size: 20px;
 		width: 50%;
 /*		left: 10;
 		bottom: 0;*/
-		position: absolute;
-		bottom: 5px;
+		position: relative;
+		left: 10px;
+		top: 400px;
+		border-radius: 22px;
 	}
 	.team__member-soc{
 		display:block;
