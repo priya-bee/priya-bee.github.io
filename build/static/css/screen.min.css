@@ -462,8 +462,7 @@ clear:both}
 	.about{
 			width:100%; 
 			min-height:650px; 
-			padding:70px 0; 
-			background:#323232 url(../images/about.png) center 0 no-repeat; 
+			padding:70px 0;
 			background-attachment:fixed; 
 			background-size:cover; 
 			text-align:center;
