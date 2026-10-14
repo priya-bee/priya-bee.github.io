@@ -9,6 +9,10 @@ body {
   font: 400 1rem/1.6 sans-serif;
 }
 
+.oil-site {
+  background: #f5f3ef url("build/static/images/mango%20bg.png") center top / cover fixed no-repeat;
+}
+
 a { color: inherit; }
 
 .site-header {
@@ -343,12 +347,15 @@ h1 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: center;
   gap: clamp(1rem, 2.5vw, 1.75rem);
+  border-radius: 1rem;
 }
 
 .oil-gallery img {
   display: block;
   width: 100%;
   height: clamp(14rem, 28vw, 21rem);
+  border-radius: 0.65rem;
+  background-color: rgb(245 243 239 / 90%);
   object-fit: contain;
 }
 
