@@ -365,6 +365,15 @@ h1 {
   padding: 0.8rem 1rem;
 }
 
+.contact-page {
+  justify-items: center;
+}
+
+.contact-page h1,
+.contact-content {
+  width: 100%;
+}
+
 .contact-content {
   display: flex;
   align-items: center;
