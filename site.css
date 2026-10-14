@@ -130,6 +130,25 @@ h1 {
   gap: clamp(1.5rem, 5vh, 3rem);
 }
 
+.code-page {
+  display: block;
+  padding: 3rem 0 5rem;
+}
+
+.code-page h1 {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.code-content {
+  max-width: 44rem;
+  margin: 0 auto;
+}
+
+.code-content p {
+  margin: 0 0 1.25rem;
+}
+
 .film-page {
   display: block;
   padding: 3rem 0 5rem;
