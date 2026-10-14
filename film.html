@@ -18,10 +18,39 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-  <main class="construction-page">
-    <p class="construction">UNDER CONSTRUCTION</p>
-    <h1>Film</h1>
-    <p class="construction">UNDER CONSTRUCTION</p>
+  <main class="film-page">
+    <h1>FILM</h1>
+    <div class="film-tabs" role="tablist" aria-label="Film work categories">
+      <button id="directed-tab" class="film-tab" type="button" role="tab" aria-selected="true" aria-controls="directed-panel" tabindex="0">Work I directed</button>
+      <button id="edited-tab" class="film-tab" type="button" role="tab" aria-selected="false" aria-controls="edited-panel" tabindex="-1">Work I edited</button>
+      <button id="assisted-tab" class="film-tab" type="button" role="tab" aria-selected="false" aria-controls="assisted-panel" tabindex="-1">Work I assisted on</button>
+    </div>
+    <section id="directed-panel" class="film-panel" role="tabpanel" aria-labelledby="directed-tab" tabindex="0"></section>
+    <section id="edited-panel" class="film-panel" role="tabpanel" aria-labelledby="edited-tab" tabindex="0" hidden></section>
+    <section id="assisted-panel" class="film-panel" role="tabpanel" aria-labelledby="assisted-tab" tabindex="0" hidden></section>
   </main>
+  <script>
+    const filmTabs = [...document.querySelectorAll('[role="tab"]')];
+    const selectFilmTab = (tab) => {
+      filmTabs.forEach((item) => {
+        const selected = item === tab;
+        item.setAttribute('aria-selected', selected);
+        item.tabIndex = selected ? 0 : -1;
+        document.getElementById(item.getAttribute('aria-controls')).hidden = !selected;
+      });
+    };
+
+    filmTabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectFilmTab(tab));
+      tab.addEventListener('keydown', (event) => {
+        if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+        event.preventDefault();
+        const direction = event.key === 'ArrowRight' ? 1 : -1;
+        const nextTab = filmTabs[(index + direction + filmTabs.length) % filmTabs.length];
+        selectFilmTab(nextTab);
+        nextTab.focus();
+      });
+    });
+  </script>
 </body>
 </html>

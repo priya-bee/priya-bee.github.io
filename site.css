@@ -128,8 +128,52 @@ h1 {
   gap: clamp(1.5rem, 5vh, 3rem);
 }
 
+.film-page {
+  display: block;
+  padding: 3rem 0 5rem;
+}
+
+.film-page h1 {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.film-tabs {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1rem, 4vw, 3rem);
+  border-bottom: 1px solid #bdbab4;
+}
+
+.film-tab {
+  padding: 0.75rem 0.25rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+.film-tab[aria-selected="true"] {
+  border-bottom-color: currentColor;
+}
+
+.film-tab:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.film-panel {
+  min-height: 12rem;
+  padding-top: 2rem;
+}
+
 .oil-page {
   display: block;
+  width: min(100% - 2.5rem, 58rem);
   padding: 3rem 0 5rem;
 }
 
@@ -139,20 +183,23 @@ h1 {
 }
 
 .oil-intro {
-  max-width: 48rem;
-  margin: 0 auto 2.5rem;
+  max-width: 42rem;
+  margin: 0 auto 2rem;
+  overflow-wrap: break-word;
 }
 
 .oil-gallery {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
 }
 
 .oil-gallery img {
   display: block;
   width: 100%;
-  height: auto;
+  height: clamp(14rem, 28vw, 21rem);
+  object-fit: contain;
 }
 
 .email-box {
@@ -169,5 +216,11 @@ h1 {
 @media (max-width: 520px) {
   .site-header { align-items: flex-start; flex-direction: column; gap: 0.75rem; }
   .site-nav { width: 100%; justify-content: space-between; }
+  .oil-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .oil-gallery img { height: clamp(12rem, 50vw, 18rem); }
+}
+
+@media (max-width: 360px) {
   .oil-gallery { grid-template-columns: 1fr; }
+  .oil-gallery img { height: auto; max-height: 24rem; }
 }
