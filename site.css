@@ -368,6 +368,85 @@ h1 {
 .contact-content {
   display: flex;
   align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-page h1 {
+  text-align: center;
+}
+
+.contact-actions {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.contact-icon {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.contact-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
+}
+
+.contact-icon:hover,
+.contact-icon:focus-visible {
+  background: rgb(35 35 35 / 8%);
+}
+
+.copy-status {
+  min-width: 7rem;
+  min-height: 1.6em;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.copy-status.sparkle-out {
+  position: relative;
+  animation: copy-status-fade 2s ease-out forwards;
+}
+
+.copy-status.sparkle-out::after {
+  content: "✦";
+  position: absolute;
+  inset: -0.35rem -0.35rem auto;
+  color: #b47a18;
+  text-shadow: 6rem 0 ✧;
+  animation: copy-status-sparkle 2s ease-out forwards;
+}
+
+.copy-status.sparkle-out::before {
+  content: "✧";
+  position: absolute;
+  inset: auto -0.35rem -0.35rem;
+  color: #b47a18;
+  text-shadow: 6rem 0 ✦;
+  animation: copy-status-sparkle 2s ease-out forwards;
+}
+
+@keyframes copy-status-fade {
+  to { opacity: 0; }
+}
+
+@keyframes copy-status-sparkle {
+  0% { opacity: 0; transform: scale(0.5) translateY(0.25rem); }
+  35% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.2) translateY(-0.5rem); }
 }
 
 @media (max-width: 520px) {

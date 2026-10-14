@@ -18,11 +18,45 @@
       <a href="contact.html" aria-current="page">Contact</a>
     </nav>
   </header>
-  <main>
-    <h1>Contact</h1>
+  <main class="contact-page">
+    <h1>CONTACT</h1>
     <div class="contact-content">
       <div class="email-box">hello@priyabhatnagar.com</div>
+      <div class="contact-actions" aria-label="Email actions">
+        <a class="contact-icon" href="mailto:hello@priyabhatnagar.com" aria-label="Email me" title="Email me">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5h18v13H3zM3.5 6l8.5 7 8.5-7" /></svg>
+        </a>
+        <button class="contact-icon" type="button" data-copy-email="hello@priyabhatnagar.com" aria-label="Copy email" title="Copy email">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="1.5"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3"/></svg>
+        </button>
+      </div>
+      <span class="copy-status" role="status" aria-live="polite"></span>
     </div>
   </main>
+  <script>
+    const copyEmailButton = document.querySelector("[data-copy-email]");
+    const copyStatus = document.querySelector(".copy-status");
+    let copyStatusTimer;
+    let copyClearTimer;
+
+    copyEmailButton.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(copyEmailButton.dataset.copyEmail);
+        window.clearTimeout(copyStatusTimer);
+        window.clearTimeout(copyClearTimer);
+        copyStatus.classList.remove("sparkle-out");
+        copyStatus.textContent = "email copied";
+        copyStatusTimer = window.setTimeout(() => {
+          copyStatus.classList.add("sparkle-out");
+          copyClearTimer = window.setTimeout(() => {
+            copyStatus.textContent = "";
+            copyStatus.classList.remove("sparkle-out");
+          }, 2000);
+        }, 13000);
+      } catch {
+        copyStatus.textContent = "Could not copy email";
+      }
+    });
+  </script>
 </body>
 </html>
