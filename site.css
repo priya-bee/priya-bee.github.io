@@ -169,7 +169,10 @@ h1 {
 }
 
 .film-panel {
+  width: 100%;
+  max-width: 60rem;
   min-height: 12rem;
+  margin-inline: auto;
   padding-top: 2rem;
 }
 
@@ -347,6 +350,10 @@ h1 {
   .oil-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .oil-gallery img { height: clamp(12rem, 50vw, 18rem); }
   .film-series-videos { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 521px) and (max-width: 760px) {
+  .film-series-videos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 360px) {
