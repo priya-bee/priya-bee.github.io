@@ -25,11 +25,67 @@
       <button id="edited-tab" class="film-tab" type="button" role="tab" aria-selected="false" aria-controls="edited-panel" tabindex="-1">Work I edited</button>
       <button id="assisted-tab" class="film-tab" type="button" role="tab" aria-selected="false" aria-controls="assisted-panel" tabindex="-1">Work I assisted on</button>
     </div>
-    <section id="directed-panel" class="film-panel" role="tabpanel" aria-labelledby="directed-tab" tabindex="0"></section>
-    <section id="edited-panel" class="film-panel" role="tabpanel" aria-labelledby="edited-tab" tabindex="0" hidden></section>
-    <section id="assisted-panel" class="film-panel" role="tabpanel" aria-labelledby="assisted-tab" tabindex="0" hidden></section>
+    <section id="directed-panel" class="film-panel" role="tabpanel" aria-labelledby="directed-tab" tabindex="0">
+      <div class="film-video"><iframe src="https://player.vimeo.com/video/1230367098" title="Film work I directed" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+    </section>
+    <section id="edited-panel" class="film-panel" role="tabpanel" aria-labelledby="edited-tab" tabindex="0" hidden>
+      <div class="film-video"><iframe src="https://player.vimeo.com/video/1230367098" title="Film work I edited" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+    </section>
+    <section id="assisted-panel" class="film-panel" role="tabpanel" aria-labelledby="assisted-tab" tabindex="0" hidden>
+      <div class="film-filter">
+        <label for="film-category">filter</label>
+        <select id="film-category">
+          <option value="all">all work</option>
+          <option value="narrative">narrative</option>
+          <option value="educational">educational</option>
+          <option value="commercial">commercial</option>
+        </select>
+      </div>
+      <div class="film-gallery">
+        <a class="film-poster" data-work-category="narrative" href="https://www.imdb.com/title/tt41550292/" target="_blank" rel="noopener noreferrer" aria-label="View DIKYFS on IMDb">
+          <img src="build/static/images/film/dikyfs-poster.png" alt="DIKYFS film poster">
+        </a>
+        <section class="film-series film-series-serpent-story" data-work-category="commercial" aria-label="Serpent Story">
+          <div class="film-video film-video-serpent-story"><iframe src="https://player.vimeo.com/video/1184185955?title=0&amp;byline=0&amp;portrait=0" title="Serpent Story on Vimeo" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        </section>
+        <section class="film-series film-series-understood-for-all" data-work-category="educational" aria-label="Understood for All">
+          <div class="film-series-videos" aria-label="Understood for All videos">
+            <a class="film-video-thumbnail" href="https://www.youtube.com/watch?v=VaC_OBNDj8Q" target="_blank" rel="noopener noreferrer" aria-label="Watch Understood for All video 1 on YouTube">
+              <img src="build/static/images/film/understood-for-all-1.png" alt="Understood for All, video 1 thumbnail" loading="lazy">
+            </a>
+            <a class="film-video-thumbnail" href="https://www.youtube.com/watch?v=ecARhBxp4SI" target="_blank" rel="noopener noreferrer" aria-label="Watch Understood for All video 2 on YouTube">
+              <img src="build/static/images/film/understood-for-all-2.png" alt="Understood for All, video 2 thumbnail" loading="lazy">
+            </a>
+            <a class="film-video-thumbnail" href="https://www.youtube.com/watch?v=O09p1QykECg" target="_blank" rel="noopener noreferrer" aria-label="Watch Understood for All video 3 on YouTube">
+              <img src="build/static/images/film/understood-for-all-3.png" alt="Understood for All, video 3 thumbnail" loading="lazy">
+            </a>
+          </div>
+        </section>
+        <section class="film-series film-series-danger-girls" data-work-category="narrative" aria-label="Danger Girls">
+          <div class="film-series-reels" aria-label="Danger Girls episodes 1 through 4">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DX62gPOtSLZ/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DX62gPOtSLZ/">View episode 1 on Instagram</a></blockquote>
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DX9TVUJtepw/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DX9TVUJtepw/">View episode 2 on Instagram</a></blockquote>
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DX_yrcwtFl6/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DX_yrcwtFl6/">View episode 3 on Instagram</a></blockquote>
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYCepAttqNr/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DYCepAttqNr/">View episode 4 on Instagram</a></blockquote>
+          </div>
+        </section>
+      </div>
+    </section>
   </main>
+  <script async src="https://www.instagram.com/embed.js"></script>
   <script>
+    const filmCategoryFilter = document.getElementById('film-category');
+    const categorizedFilmItems = [...document.querySelectorAll('[data-work-category]')];
+
+    filmCategoryFilter.addEventListener('change', () => {
+      categorizedFilmItems.forEach((item) => {
+        item.hidden = filmCategoryFilter.value !== 'all' && item.dataset.workCategory !== filmCategoryFilter.value;
+      });
+      if (filmCategoryFilter.value === 'all' || filmCategoryFilter.value === 'commercial') {
+        requestAnimationFrame(() => window.instgrm?.Embeds?.process());
+      }
+    });
+
     const filmTabs = [...document.querySelectorAll('[role="tab"]')];
     const selectFilmTab = (tab) => {
       filmTabs.forEach((item) => {
@@ -38,6 +94,9 @@
         item.tabIndex = selected ? 0 : -1;
         document.getElementById(item.getAttribute('aria-controls')).hidden = !selected;
       });
+      if (tab.id === 'assisted-tab') {
+        requestAnimationFrame(() => window.instgrm?.Embeds?.process());
+      }
     };
 
     filmTabs.forEach((tab, index) => {

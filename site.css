@@ -1,5 +1,7 @@
 * { box-sizing: border-box; }
 
+[hidden] { display: none !important; }
+
 body {
   margin: 0;
   color: #232323;
@@ -171,6 +173,132 @@ h1 {
   padding-top: 2rem;
 }
 
+.film-filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.film-filter label,
+.film-filter select {
+  font: inherit;
+}
+
+.film-filter select {
+  padding: 0.35rem 1.5rem 0.35rem 0.1rem;
+  border: 0;
+  border-bottom: 1px solid #8f8b84;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.film-filter select:hover {
+  border-bottom-color: #232323;
+}
+
+.film-filter select:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.film-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  align-items: start;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+.film-video {
+  width: min(100%, 48rem);
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+}
+
+.film-video iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.film-video + .film-video {
+  margin-top: 2rem;
+}
+
+.film-gallery .film-video,
+.film-gallery .film-video + .film-video {
+  width: 100%;
+  margin: 0;
+}
+
+.film-series-understood-for-all,
+.film-series-danger-girls {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 640px) {
+  .film-series-serpent-story {
+    grid-column: span 2;
+  }
+}
+
+.film-series-reels {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20.5rem), 1fr));
+  align-items: start;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+.film-series-videos {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+.film-video-thumbnail {
+  display: block;
+  overflow: hidden;
+}
+
+.film-video-thumbnail img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.film-series-reels .instagram-media {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 540px !important;
+  margin: 0 auto !important;
+}
+
+.film-series-reels .instagram-media iframe {
+  width: 100%;
+}
+
+.film-poster {
+  display: block;
+  width: min(100%, 18rem);
+  margin: 0 auto 2rem;
+}
+
+.film-gallery .film-poster {
+  margin: 0 auto;
+}
+
+.film-poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .oil-page {
   display: block;
   width: min(100% - 2.5rem, 58rem);
@@ -218,6 +346,7 @@ h1 {
   .site-nav { width: 100%; justify-content: space-between; }
   .oil-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .oil-gallery img { height: clamp(12rem, 50vw, 18rem); }
+  .film-series-videos { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 360px) {
