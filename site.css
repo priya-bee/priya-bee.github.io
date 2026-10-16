@@ -238,6 +238,11 @@ h1 {
   gap: clamp(1rem, 2.5vw, 1.75rem);
 }
 
+.film-in-development {
+  text-align: center;
+  text-decoration: underline;
+}
+
 .film-video {
   width: min(100%, 48rem);
   margin: 0 auto;
